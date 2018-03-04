@@ -1,11 +1,13 @@
 package com.example.android.news;
 
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
-import android.provider.BaseColumns;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -105,4 +107,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             };
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch(item.getItemId()) {
+            case R.id.favorit_news:
+                Intent intent = new Intent(this, FavoritNews.class);
+                startActivity(intent);
+
+                return true;
+
+            case R.id.settings:
+
+                return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 }
