@@ -47,11 +47,14 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView titleText = listItemView.findViewById(R.id.list_item_title_text);
         titleText.setText(currentNews.getTitle());
 
+        titleText.setTextColor(SettingsActivity.getTextColor(getContext()));
+
         TextView datumText = listItemView.findViewById(R.id.list_item_publication_date);
         datumText.setText(currentNews.getDate());
 
         View saveIcon = listItemView.findViewById(R.id.list_item_save_icon);
 
+        //save it in the Favorite news Database
         saveIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -53,6 +53,7 @@ public class NewsCursorAdapter extends CursorAdapter {
         dateText.setText("");
         deleteIcon.setImageResource(R.drawable.ic_delete);
 
+        //set on click listener to delete the row
         deleteIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

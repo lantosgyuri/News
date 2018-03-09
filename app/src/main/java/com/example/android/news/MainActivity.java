@@ -1,9 +1,12 @@
 package com.example.android.news;
 
 import android.app.LoaderManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private NewsAdapter thema1Adapter, thema2Adapter;
     private ListView thema1ListView, thema2ListView;
-    private TextView thema1Titel, thema2Titel;
+    private TextView thema1Titel, thema2Titel, emptyView;
 
     private View refreschIcon;
 
@@ -43,23 +46,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+       //set up the UI
+        emptyView = findViewById(R.id.empty_view);
 
         thema1ListView = findViewById(R.id.thema1_list_view);
         thema1Adapter = new NewsAdapter(this, new ArrayList<News>());
         thema1ListView.setAdapter(thema1Adapter);
         thema1ListView.setOnItemClickListener(new openNewsClickListener(thema1Adapter, this));
+        thema1ListView.setEmptyView(emptyView);
 
         thema2ListView = findViewById(R.id.thema2_list_view);
         thema2Adapter = new NewsAdapter(this, new ArrayList<News>());
         thema2ListView.setAdapter(thema2Adapter);
         thema2ListView.setOnItemClickListener(new openNewsClickListener(thema2Adapter, this));
-
-        getLoaderManager().initLoader(THEMA1_LOADER, null, thema1Loader);
-        getLoaderManager().initLoader(THEMA2_LOADER, null, thema2Loader);
+        thema2ListView.setEmptyView(emptyView);
 
         thema1Titel = findViewById(R.id.thema1_titel_text_view);
         thema2Titel = findViewById(R.id.thema2_title_text_view);
 
+        //get the Themas what user have set
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         thema1Titel.setText(sharedPref.getString(theme1Key, "You have to give a theme in settings"));
         thema2Titel.setText(sharedPref.getString(theme2Key, "You have to give a theme in settings"));
@@ -67,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         refreschIcon = findViewById(R.id.refresh_icon);
 
+        //restart the loaders on button click
         refreschIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,14 +81,35 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "News refreshed", Toast.LENGTH_LONG).show();
             }
         });
+
+
+        //checking internet connection
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            //kick of the Loaders
+            getLoaderManager().initLoader(THEMA1_LOADER, null, thema1Loader);
+            getLoaderManager().initLoader(THEMA2_LOADER, null, thema2Loader);
+
+        } else {
+            // Update empty state with no connection error message
+            emptyView.setText("There is no internet Connection");
+        }
+
+
     }
 
 
+    //Operate with two loaders.
     private LoaderManager.LoaderCallbacks<List<News>> thema1Loader =
             new LoaderManager.LoaderCallbacks<List<News>>() {
                 @Override
                 public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
+                    //set the URI
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                     String thema = sharedPreferences.getString(theme1Key, "");
 
@@ -114,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
 
+                    //set the URI
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                     String thema2 = sharedPreferences.getString(theme2Key, "");
 

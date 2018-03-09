@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:text="Guardian News"
         />
 
@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="Thema 1"
+            android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_blue_dark"/>
 
@@ -53,7 +54,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Refresh to get some News"/>
 
     <LinearLayout
         android:layout_weight="1"
@@ -69,6 +78,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="Thema 2"
+            android:textAllCaps="true"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_blue_dark"/>
 

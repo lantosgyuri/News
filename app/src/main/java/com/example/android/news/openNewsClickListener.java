@@ -8,6 +8,9 @@ import android.widget.Adapter;
 import android.widget.AdapterView;
 
 
+/*I have two ListView So, I have made a separate class for the OnItemClick listener
+*to make the code shorter.
+*/
 
 public class openNewsClickListener implements AdapterView.OnItemClickListener {
 
