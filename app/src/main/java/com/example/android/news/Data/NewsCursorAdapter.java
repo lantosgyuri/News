@@ -3,6 +3,7 @@ package com.example.android.news.Data;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.news.NewsAdapter;
 import com.example.android.news.R;
 
 import com.example.android.news.Data.FavoritNewsContract.NewsContractEntry;
@@ -37,9 +39,9 @@ public class NewsCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
 
-        TextView titleText = view.findViewById(R.id.list_item_title_text);
-        TextView dateText = view.findViewById(R.id.list_item_publication_date);
-        ImageView deleteIcon = view.findViewById(R.id.list_item_save_icon);
+        final TextView titleText = view.findViewById(R.id.list_item_title_text);
+        final TextView dateText = view.findViewById(R.id.list_item_publication_date);
+        final ImageView deleteIcon = view.findViewById(R.id.list_item_save_icon);
 
         int titleColumnIndex = cursor.getColumnIndex(NewsContractEntry.COLUMN_NEWS_TITEL);
         String title = cursor.getString(titleColumnIndex);
@@ -62,6 +64,7 @@ public class NewsCursorAdapter extends CursorAdapter {
                 String[] whereArgs = new String[] { String.valueOf(index) };
                 db.delete(NewsContractEntry.TABLE_NAME, whereClause, whereArgs);
 
+                titleText.setText("This Item Is Deleted");
                 Toast.makeText(context, "News deleted", Toast.LENGTH_LONG).show();
             }
         });

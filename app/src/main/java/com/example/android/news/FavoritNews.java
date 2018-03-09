@@ -1,10 +1,14 @@
 package com.example.android.news;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.news.Data.FavoritNewsContract.NewsContractEntry;
@@ -18,7 +22,6 @@ import com.example.android.news.Data.NewsCursorAdapter;
 
 public class FavoritNews extends AppCompatActivity {
 
-    private static final String LOG_TAG= FavoritNews.class.getSimpleName();
     SQLiteDatabase db;
     ListView listView;
 
@@ -30,14 +33,24 @@ public class FavoritNews extends AppCompatActivity {
         listView = findViewById(R.id.favorit_news_list_view);
 
         FavoritNewsDbHelper helper = new FavoritNewsDbHelper(this);
-
         db = helper.getReadableDatabase();
-
-        Cursor cursor = db.query(NewsContractEntry.TABLE_NAME, null, null, null, null, null, null);
+        final Cursor cursor = db.query(NewsContractEntry.TABLE_NAME, null, null, null, null, null, null);
 
         NewsCursorAdapter cursorAdapter = new NewsCursorAdapter(this, cursor);
 
         listView.setAdapter(cursorAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                int webUrlIndex = cursor.getColumnIndex(NewsContractEntry.COLUMN_NEWS_WEBURL);
+                String webUrl = cursor.getString(webUrlIndex);
+
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(webUrl));
+                startActivity(intent);
+            }
+        });
 
     }
 

@@ -4,12 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 
 
-/**
- * Created by android on 2018.03.03..
- */
 
 public class openNewsClickListener implements AdapterView.OnItemClickListener {
 
@@ -20,7 +18,6 @@ public class openNewsClickListener implements AdapterView.OnItemClickListener {
         adapter = mAdapter;
         context = mContext;
     }
-
 
 
     @Override
