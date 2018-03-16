@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">News</string>
+    <string name="refresh_empty_view">Refresh to get some News</string>
+    <string name="titel_guradian_news">Guardian News</string>
 </resources>

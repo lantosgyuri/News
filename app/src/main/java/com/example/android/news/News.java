@@ -6,37 +6,37 @@ package com.example.android.news;
 
 public class News {
 
-    private String Title;
-    private String Date;
-    private String WebUrl;
+    private String mTitle;
+    private String mSectionName;
+    private String mWebUrl;
 
-    public News(String mtitle, String mdate, String mwebUrl ){
-        Title = mtitle;
-        Date = mdate;
-        WebUrl = mwebUrl;
+    public News(String title, String sectionName, String webUrl ){
+        mTitle = title;
+        mSectionName = sectionName;
+        mWebUrl = webUrl;
     }
 
     public String getTitle() {
-        return Title;
+        return mTitle;
     }
 
-    public void setTitle(String mTitle) {
-        this.Title = Title;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
-    public String getDate() {
-        return Date;
+    public String getSectionName() {
+        return mSectionName;
     }
 
-    public void setDate(String mDate) {
-        this.Date = Date;
+    public void setSectionName(String sectionName) {
+        mSectionName = sectionName;
     }
 
     public String getWebUrl() {
-        return WebUrl;
+        return mWebUrl;
     }
 
-    public void setWebUrl(String WebUrl) {
-        this.WebUrl = WebUrl;
+    public void setWebUrl(String webUrl) {
+        mWebUrl = webUrl;
     }
 }

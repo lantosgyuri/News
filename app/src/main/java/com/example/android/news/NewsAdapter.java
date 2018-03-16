@@ -49,8 +49,8 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         titleText.setTextColor(SettingsActivity.getTextColor(getContext()));
 
-        TextView datumText = listItemView.findViewById(R.id.list_item_publication_date);
-        datumText.setText(currentNews.getDate());
+        TextView sectionText = listItemView.findViewById(R.id.list_item_section_name);
+        sectionText.setText(currentNews.getSectionName());
 
         View saveIcon = listItemView.findViewById(R.id.list_item_save_icon);
 

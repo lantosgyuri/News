@@ -26,6 +26,11 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     private String mUrl;
     private static final String LOG_TAG = NewsLoader.class.getSimpleName();
+    private static final String RESPONSE = "response";
+    private static final String RESULTS = "results";
+    private static final String WEBTITLE = "webTitle";
+    private static final String SECTIONNAME = "sectionName";
+    private static final String WEBURL = "webUrl";
 
     public NewsLoader(Context context, String Url) {
         super(context);
@@ -64,17 +69,17 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
         try {
             JSONObject baseJsonObject = new JSONObject(baseJson);
-            JSONObject response = baseJsonObject.getJSONObject("response");
-            JSONArray results = response.getJSONArray("results");
+            JSONObject response = baseJsonObject.getJSONObject(RESPONSE);
+            JSONArray results = response.getJSONArray(RESULTS);
 
              for (int i = 0; i<results.length();i++){
                  JSONObject currentJson = results.getJSONObject(i);
 
-                 String title = currentJson.getString("webTitle");
-                 String date = currentJson.getString("webPublicationDate");
-                 String url = currentJson.getString("webUrl");
+                 String title = currentJson.getString(WEBTITLE);
+                 String sectionName = currentJson.getString(SECTIONNAME);
+                 String url = currentJson.getString(WEBURL);
 
-                 News moreNews = new News(title, date, url);
+                 News moreNews = new News(title, sectionName, url);
 
                  newsList.add(moreNews);
              }

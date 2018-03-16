@@ -40,7 +40,6 @@ public class NewsCursorAdapter extends CursorAdapter {
     public void bindView(View view, final Context context, Cursor cursor) {
 
         final TextView titleText = view.findViewById(R.id.list_item_title_text);
-        final TextView dateText = view.findViewById(R.id.list_item_publication_date);
         final ImageView deleteIcon = view.findViewById(R.id.list_item_save_icon);
 
         int titleColumnIndex = cursor.getColumnIndex(NewsContractEntry.COLUMN_NEWS_TITEL);
@@ -50,7 +49,6 @@ public class NewsCursorAdapter extends CursorAdapter {
         final int index = cursor.getInt(idIndex);
 
         titleText.setText(title);
-        dateText.setText("");
         deleteIcon.setImageResource(R.drawable.ic_delete);
 
         //set on click listener to delete the row
