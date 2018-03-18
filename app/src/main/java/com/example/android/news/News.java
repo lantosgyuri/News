@@ -8,12 +8,16 @@ public class News {
 
     private String mTitle;
     private String mSectionName;
+    private String mDate;
     private String mWebUrl;
+    private String mContributor;
 
-    public News(String title, String sectionName, String webUrl ){
+    public News(String title, String sectionName, String date, String contributor, String webUrl) {
         mTitle = title;
         mSectionName = sectionName;
+        mDate = date;
         mWebUrl = webUrl;
+        mContributor = contributor;
     }
 
     public String getTitle() {
@@ -28,15 +32,16 @@ public class News {
         return mSectionName;
     }
 
-    public void setSectionName(String sectionName) {
-        mSectionName = sectionName;
+    public String getDate() {
+        return mDate;
     }
+
+    public String getContributor() { return mContributor;}
 
     public String getWebUrl() {
         return mWebUrl;
     }
 
-    public void setWebUrl(String webUrl) {
-        mWebUrl = webUrl;
-    }
 }
+
+

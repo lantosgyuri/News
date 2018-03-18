@@ -106,72 +106,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
 
-//    //Operate with two loaders.
-//    private LoaderManager.LoaderCallbacks<List<News>> thema1Loader =
-//            new LoaderManager.LoaderCallbacks<List<News>>() {
-//                @Override
-//                public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-//
-//                    //set the URI
-//                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-//                    String thema = sharedPreferences.getString(theme1Key, "");
-//
-//                    Uri baseUri = Uri.parse(BaseUrl);
-//                    Uri.Builder uriBuilder = baseUri.buildUpon();
-//
-//                    uriBuilder.appendQueryParameter("q", thema);
-//                    uriBuilder.appendQueryParameter("api-key", "test");
-//                    Log.e(LOG_TAG," url1: " + uriBuilder.toString());
-//
-//                    return new NewsLoader(MainActivity.this, uriBuilder.toString());
-//                }
-//
-//                @Override
-//                public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
-//                    thema1Adapter.clear();
-//                    thema1Adapter.addAll(news);
-//                }
-//
-//                @Override
-//                public void onLoaderReset(Loader<List<News>> loader) {
-//                    thema1Adapter.clear();
-//
-//                }
-//            };
-//
-//    private LoaderManager.LoaderCallbacks<List<News>> thema2Loader =
-//            new LoaderManager.LoaderCallbacks<List<News>>() {
-//                @Override
-//                public Loader<List<News>> onCreateLoader(int i, Bundle bundle) {
-//
-//                    //set the URI
-//                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-//                    String thema2 = sharedPreferences.getString(theme2Key, "");
-//
-//                    Uri baseUri = Uri.parse(BaseUrl);
-//                    Uri.Builder uriBuilder = baseUri.buildUpon();
-//
-//                    uriBuilder.appendQueryParameter("q", thema2);
-//                    uriBuilder.appendQueryParameter("api-key", "test");
-//                    Log.e(LOG_TAG," url2: " + uriBuilder.toString());
-//
-//                    return new NewsLoader(MainActivity.this, uriBuilder.toString());
-//                }
-//
-//                @Override
-//                public void onLoadFinished(Loader<List<News>> loader, List<News> news) {
-//                    thema2Adapter.clear();
-//                    thema2Adapter.addAll(news);
-//
-//                }
-//
-//                @Override
-//                public void onLoaderReset(Loader<List<News>> loader) {
-//
-//                    thema2Adapter.clear();
-//                }
-//            };
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -210,8 +144,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
                 Uri baseUri = Uri.parse(BaseUrl);
                 Uri.Builder uriBuilder = baseUri.buildUpon();
-
                 uriBuilder.appendQueryParameter("q", thema);
+                uriBuilder.appendQueryParameter("show-tags", "contributor");
                 uriBuilder.appendQueryParameter("api-key", "test");
                 Log.e(LOG_TAG," url1: " + uriBuilder.toString());
 
@@ -226,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 Uri.Builder uriBuilder2 = baseUri2.buildUpon();
 
                 uriBuilder2.appendQueryParameter("q", thema2);
+                uriBuilder2.appendQueryParameter("show-tags", "contributor");
                 uriBuilder2.appendQueryParameter("api-key", "test");
                 Log.e(LOG_TAG," url2: " + uriBuilder2.toString());
 

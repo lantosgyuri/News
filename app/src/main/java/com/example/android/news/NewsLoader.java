@@ -25,11 +25,16 @@ import java.util.List;
 public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     private String mUrl;
+    // set the basic date string in case the date is not available.
+    private String date = "Date not available";
+    //set the contributor in case if the data is not available
+    private String contributor = "Contributor not available";
     private static final String LOG_TAG = NewsLoader.class.getSimpleName();
     private static final String RESPONSE = "response";
     private static final String RESULTS = "results";
     private static final String WEBTITLE = "webTitle";
     private static final String SECTIONNAME = "sectionName";
+    private static final String DATE ="webPublicationDate";
     private static final String WEBURL = "webUrl";
 
     public NewsLoader(Context context, String Url) {
@@ -77,9 +82,24 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
                  String title = currentJson.getString(WEBTITLE);
                  String sectionName = currentJson.getString(SECTIONNAME);
+
+                 //check the date
+                 if (currentJson.has(DATE)){
+                     String fullDate = currentJson.getString(DATE);
+                     // make the date nicer. The date format is good, but I need just the first 10 character
+                     date = fullDate.substring(0,9);
+                 }
+
+                 //check the author
+                 JSONArray tags = currentJson.getJSONArray("tags");
+                 if (tags.length() != 0) {
+                     JSONObject authorTag = tags.getJSONObject(0);
+                     contributor= authorTag.getString(WEBTITLE);
+                 }
+
                  String url = currentJson.getString(WEBURL);
 
-                 News moreNews = new News(title, sectionName, url);
+                 News moreNews = new News(title, sectionName, date, contributor, url);
 
                  newsList.add(moreNews);
              }

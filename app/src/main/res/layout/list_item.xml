@@ -20,8 +20,28 @@
         android:id="@+id/list_item_section_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="2017.06.01"
+        tools:text="category"
         android:layout_below="@id/list_item_title_text"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/list_item_publication_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="date date date"
+        android:layout_below="@id/list_item_title_text"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:layout_marginTop="6dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/list_item_contributor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="contributor"
+        android:layout_below="@id/list_item_section_name"
         android:layout_centerHorizontal="true"/>
 
     <ImageView

@@ -52,6 +52,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView sectionText = listItemView.findViewById(R.id.list_item_section_name);
         sectionText.setText(currentNews.getSectionName());
 
+        TextView dateText = listItemView.findViewById(R.id.list_item_publication_date);
+        dateText.setText(currentNews.getDate());
+
+        TextView authorText = listItemView.findViewById(R.id.list_item_contributor);
+        authorText.setText(currentNews.getContributor());
+
         View saveIcon = listItemView.findViewById(R.id.list_item_save_icon);
 
         //save it in the Favorite news Database
