@@ -63,8 +63,8 @@ public class NewsCursorAdapter extends CursorAdapter {
                 String[] whereArgs = new String[] { String.valueOf(index) };
                 db.delete(NewsContractEntry.TABLE_NAME, whereClause, whereArgs);
 
-                titleText.setText("This Item Is Deleted");
-                Toast.makeText(context, "News deleted", Toast.LENGTH_LONG).show();
+                titleText.setText(R.string.item_deleted);
+                Toast.makeText(context, R.string.item_deleted_toast, Toast.LENGTH_LONG).show();
             }
         });
 

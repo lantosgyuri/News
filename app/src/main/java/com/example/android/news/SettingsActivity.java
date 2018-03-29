@@ -46,14 +46,14 @@ public class SettingsActivity extends AppCompatActivity {
 
             RadioButton button = new RadioButton(this);
 
-            button.setText("Text color");
+            button.setText(R.string.set_color);
             button.setTextColor(color);
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     saveTextColor(color);
-                    Toast.makeText(SettingsActivity.this, "Your settings have saved", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SettingsActivity.this, R.string.settings_saved_toast, Toast.LENGTH_LONG).show();
                 }
             });
             radioGroup.addView(button);

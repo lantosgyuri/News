@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         //get the Themas what user have set
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        thema1Titel.setText(sharedPref.getString(theme1Key, "You have to give a theme in settings"));
-        thema2Titel.setText(sharedPref.getString(theme2Key, "You have to give a theme in settings"));
+        thema1Titel.setText(sharedPref.getString(theme1Key, getString(R.string.give_search_theme)));
+        thema2Titel.setText(sharedPref.getString(theme2Key, getString(R.string.give_search_theme)));
 
 
         refreschIcon = findViewById(R.id.refresh_icon);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             public void onClick(View view) {
             getLoaderManager().restartLoader(THEMA1_LOADER, null, MainActivity.this);
             getLoaderManager().restartLoader(THEMA2_LOADER, null, MainActivity.this);
-            Toast.makeText(getApplicationContext(), "News refreshed", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.news_refreshed_toast, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         } else {
             // Update empty state with no connection error message
-            emptyView.setText("There is no internet Connection");
+            emptyView.setText(R.string.no_internet_connection);
         }
 
 

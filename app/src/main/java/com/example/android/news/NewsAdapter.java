@@ -72,8 +72,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
                 values.put(NewsContractEntry.COLUMN_NEWS_WEBURL, currentNews.getWebUrl());
 
                 db.insert(NewsContractEntry.TABLE_NAME, null, values );
-                Log.e(LOG_TAG,"News was inserted " +values);
-                Toast.makeText(getContext(), "News inserted", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), R.string.news_inserted_toast, Toast.LENGTH_LONG).show();
             }
         });
 

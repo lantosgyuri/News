@@ -2,4 +2,12 @@
     <string name="app_name">News</string>
     <string name="refresh_empty_view">Refresh to get some News</string>
     <string name="titel_guradian_news">Guardian News</string>
+    <string name="item_deleted">This Item Is Deleted</string>
+    <string name="item_deleted_toast">News deleted</string>
+    <string name="give_search_theme">You have to give a theme in settings</string>
+    <string name="news_refreshed_toast">News refreshed</string>
+    <string name="no_internet_connection">There is no internet Connection</string>
+    <string name="news_inserted_toast">News inserted</string>
+    <string name="set_color">Text color</string>
+    <string name="settings_saved_toast">Your settings have saved</string>
 </resources>
